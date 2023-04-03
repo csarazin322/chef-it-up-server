@@ -1,0 +1,23 @@
+{
+  "name": "web-dev-final-project-server",
+  "version": "1.0.0",
+  "description": "node server for web dev final project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csarazin322/web-dev-final-project-server.git"
+  },
+  "author": "Corey Sarazin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/csarazin322/web-dev-final-project-server/issues"
+  },
+  "homepage": "https://github.com/csarazin322/web-dev-final-project-server#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}
