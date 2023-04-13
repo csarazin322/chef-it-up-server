@@ -32,11 +32,11 @@ const deleteRecipe = async (req, res) => {
 
 
 export default (app) => {
-    app.post('api/recipes', createRecipe)
-    app.get('api/recipes', findRecipes)
-    app.get('api/recipes/:_id', findRecipeById)
-    app.put('api/recipes/:_id', updateRecipe)
-    app.delete('api/recipes/:_id', deleteRecipe)
+    app.post('/api/recipes', createRecipe)
+    app.get('/api/recipes', findRecipes)
+    app.get('/api/recipes/:_id', findRecipeById)
+    app.put('/api/recipes/:_id', updateRecipe)
+    app.delete('/api/recipes/:_id', deleteRecipe)
 }
 
 
