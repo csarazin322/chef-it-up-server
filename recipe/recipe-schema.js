@@ -11,6 +11,6 @@ const schema = mongoose.Schema({
         measurement: String
     }]
 
-})
+}, { collection: 'recipe' })
 
 export default schema;
