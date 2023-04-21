@@ -9,8 +9,8 @@ const schema = mongoose.Schema({
         ingredient: String,
         amount: Number,
         measurement: String
-    }]
-
+    }],
+    steps: [String]
 }, { collection: 'recipe' })
 
 export default schema;

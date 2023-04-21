@@ -7,7 +7,8 @@ const userSchema = mongoose.Schema({
     email: { type: String, required: true, unique: true },
     userRole: { type: ['CONSUMER', 'CHEF'], required: true },
     likedRecipesIds: { type: [String], default: [] },
-    chefsFollowingIds: { type: [String], default: [] }
+    chefsFollowingIds: { type: [String], default: [] },
+    createdRecipeIds: { type: [String] }
 }, { collection: 'recipe-users' })
 
 export default userSchema;
