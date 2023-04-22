@@ -37,8 +37,6 @@ const findByUsername = async (req, res) => {
 const updateUser = async (req, res) => {
     const idToUpdate = req.params._id;
     const updates = req.body;
-    console.log(idToUpdate)
-    console.log(updates)
     const status = await userDao.updateUser(idToUpdate, updates)
     return (status === 404) ? res.sendStatus(404) : res.json(status)
 }
@@ -50,14 +48,11 @@ const deleteUser = async (req, res) => {
 }
 
 const profile = async (req, res) => {
-    console.log('getting a profile')
     const currentUser = req.session["currentUser"];
     if (!currentUser) {
-        console.log('no user logged in')
         res.sendStatus(404);
         return;
     }
-    console.log(`${currentUser} logged in`)
     res.send(currentUser);
 };
 
@@ -65,7 +60,6 @@ const login = async (req, res) => {
     const userCreds = req.body
     const user = await userDao.findUserByCredentials(userCreds);
     if (user) {
-        console.log(`logging in ${user}`)
         req.session["currentUser"] = user;
         res.json(user);
     } else {
