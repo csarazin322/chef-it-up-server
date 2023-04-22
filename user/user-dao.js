@@ -6,18 +6,23 @@ export const findUsers = async () => {
 }
 
 export const findUserById = async (_id) => {
-    const user = await userModel.findById(_id).catch((error) => 404);
-    return user;
+    const user = await userModel.findById(_id).catch((error) => 404)
+    return user
 }
 
+export const findUserByUsername = async (username) => {
+    const user = await userModel.findOne({ username }).catch((error) => 404)
+    return user
+};
+
 export const findConsumers = async () => {
-    const consumers = await userModel.find({ userRole: 'CONSUMER' });
-    return consumers;
+    const consumers = await userModel.find({ userRole: 'CONSUMER' })
+    return consumers
 }
 
 export const findChefs = async () => {
-    const chefs = await userModel.find({ userRole: 'CHEF' });
-    return chefs;
+    const chefs = await userModel.find({ userRole: 'CHEF' })
+    return chefs
 }
 
 export const createUser = async (user) => {
@@ -26,11 +31,20 @@ export const createUser = async (user) => {
 };
 
 export const deleteUser = async (_id) => {
-    const status = await userModel.deleteOne({ _id });
+    const status = await userModel.deleteOne({ _id }).catch((error) => {
+        console.log(error)
+        return 404
+    });
     return status
 }
 
 export const updateUser = async (_id, user) => {
-    const status = await userModel.updateOne({ _id }, { $set: user }).catch((error) => 404);
+    console.log(_id)
+    const status = await userModel.updateOne({ _id: _id }, user).catch((error) => 404)
     return status
 }
+
+export const findUserByCredentials = async ({ username, password }) => {
+    const user = await userModel.findOne({ username, password })
+    return user
+};

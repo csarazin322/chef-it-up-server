@@ -19,11 +19,11 @@ app.use(cors({
     origin: "http://localhost:3000"
 }))
 
-// app.use(session({
-//     secret: 'secret',
-//     resave: true,
-//     saveUninitialized: true
-// }))
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}))
 
 
 app.use(express.json());
