@@ -39,7 +39,8 @@ export const deleteUser = async (_id) => {
 }
 
 export const updateUser = async (_id, user) => {
-    const status = await userModel.updateOne({ _id }, user).catch((error) => 404)
+    console.log(user)
+    const status = await userModel.findOneAndUpdate({ _id }, user, { new: true }).catch((error) => 404)
     return status
 }
 
