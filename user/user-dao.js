@@ -1,9 +1,36 @@
 import userModel from "./user-model.js";
 
-export const findUsers = () => userModel.find();
-export const findUserById = (_id) => userModel.findById(_id);
-export const findConsumers = () => userModel.find({ userRole: 'CONSUMER' });
-export const findChefs = () => userModel.find({ userRole: 'CHEF' });
-export const createUser = (user) => userModel.create(user);
-export const deleteUser = (_id) => userModel.deleteOne({ _id });
-export const updateUser = (_id, user) => userModel.updateOne({ _id }, { $set: user });
+export const findUsers = async () => {
+    const users = await userModel.find();
+    return users;
+}
+
+export const findUserById = async (_id) => {
+    const user = await userModel.findById(_id).catch((error) => 404);
+    return user;
+}
+
+export const findConsumers = async () => {
+    const consumers = await userModel.find({ userRole: 'CONSUMER' });
+    return consumers;
+}
+
+export const findChefs = async () => {
+    const chefs = await userModel.find({ userRole: 'CHEF' });
+    return chefs;
+}
+
+export const createUser = async (user) => {
+    const newUser = await userModel.create(user).catch((error) => 409)
+    return newUser
+};
+
+export const deleteUser = async (_id) => {
+    const status = await userModel.deleteOne({ _id });
+    return status
+}
+
+export const updateUser = async (_id, user) => {
+    const status = await userModel.updateOne({ _id }, { $set: user }).catch((error) => 404);
+    return status
+}
