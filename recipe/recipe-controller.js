@@ -14,7 +14,9 @@ const findRecipes = async (_, res) => {
 const findRecipeById = async (req, res) => {
     const idToFind = req.params._id;
     const recipe = await recipeDao.findRecipeById(idToFind);
-    (recipe === null) ? res.status(404) : res.json(recipe)
+    console.log(`returning recipe of`)
+    console.log(recipe)
+    return (recipe === null) ? res.status(404) : res.json(recipe)
 }
 
 const updateRecipe = async (req, res) => {

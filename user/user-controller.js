@@ -49,11 +49,13 @@ const deleteUser = async (req, res) => {
 
 const profile = async (req, res) => {
     const currentUser = req.session["currentUser"];
+
+    const updatedUser = await userDao.findUserById(currentUser._id)
     if (!currentUser) {
         res.sendStatus(404);
         return;
     }
-    res.send(currentUser);
+    res.send(updatedUser);
 };
 
 const login = async (req, res) => {
