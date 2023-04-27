@@ -18,7 +18,9 @@ const findConsumers = async (req, res) => {
 }
 
 const findChefs = async (req, res) => {
+    console.log('got here 1')
     const chefs = await userDao.findChefs();
+    console.log('got here 2')
     res.json(chefs)
 }
 
@@ -50,12 +52,16 @@ const deleteUser = async (req, res) => {
 const profile = async (req, res) => {
     const currentUser = req.session["currentUser"];
 
-    const updatedUser = await userDao.findUserById(currentUser._id)
     if (!currentUser) {
         res.sendStatus(404);
         return;
     }
+
+    const updatedUser = await userDao.findUserById(currentUser._id)
+
     res.send(updatedUser);
+    return
+
 };
 
 const login = async (req, res) => {
@@ -79,13 +85,13 @@ export default (app) => {
     app.post('/api/users/login', login)
     app.post('/api/users/logout', logout)
     app.get('/api/users/profile', profile)
+    app.get('/api/users/chefs', findChefs)
     app.post('/api/users', createUser)
     app.post('/api/users/register', createUser)
     app.get('/api/users', findUsers)
     app.get('/api/users/:_id', findUserById)
     app.get('/api/users/username/:username', findByUsername)
-    app.get('/api/users/chefs', findChefs)
-    app.get('/api/users/consumers', findConsumers)
     app.put('/api/users/:_id', updateUser)
     app.delete('/api/users/:_id', deleteUser)
+    app.get('/api/users/consumers', findConsumers)
 }

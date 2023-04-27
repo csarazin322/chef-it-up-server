@@ -6,7 +6,7 @@ export const findUsers = async () => {
 }
 
 export const findUserById = async (_id) => {
-    const user = await userModel.findById(_id).catch((error) => 404)
+    const user = await userModel.findById({ _id: _id }).catch((error) => 404)
     return user
 }
 
@@ -16,12 +16,13 @@ export const findUserByUsername = async (username) => {
 };
 
 export const findConsumers = async () => {
-    const consumers = await userModel.find({ userRole: 'CONSUMER' })
+    const consumers = await userModel.find({ isChef: false })
     return consumers
 }
 
 export const findChefs = async () => {
-    const chefs = await userModel.find({ userRole: 'CHEF' })
+    const chefs = await userModel.find({ isChef: true })
+    console.log('got here 3')
     return chefs
 }
 
