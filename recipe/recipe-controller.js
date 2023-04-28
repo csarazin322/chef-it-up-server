@@ -2,11 +2,9 @@ import * as recipeDao from './recipe-dao.js'
 import mongoose from 'mongoose';
 
 const createRecipe = async (req, res) => {
-    console.log(req.body)
     const newRecipe = req.body;
     newRecipe._id = new mongoose.Types.ObjectId();
     const insertedRecipe = await recipeDao.createRecipe(newRecipe);
-    console.log(insertedRecipe)
     return (insertedRecipe == 409) ? res.sendStatus(409) : res.json(insertedRecipe);
 }
 
@@ -18,8 +16,6 @@ const findRecipes = async (_, res) => {
 const findRecipeById = async (req, res) => {
     const idToFind = req.params._id;
     const recipe = await recipeDao.findRecipeById(idToFind);
-    console.log(`returning recipe of`)
-    console.log(recipe)
     return (recipe === null) ? res.status(404) : res.json(recipe)
 }
 

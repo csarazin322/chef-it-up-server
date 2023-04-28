@@ -1,7 +1,6 @@
 import * as userDao from './user-dao.js'
 
 const createUser = async (req, res) => {
-    console.log(req.body)
     const newUser = req.body;
     const insertedUser = await userDao.createUser(newUser);
     return (insertedUser == 409) ? res.sendStatus(409) : res.json(insertedUser);
@@ -18,9 +17,7 @@ const findConsumers = async (req, res) => {
 }
 
 const findChefs = async (req, res) => {
-    console.log('got here 1')
     const chefs = await userDao.findChefs();
-    console.log('got here 2')
     res.json(chefs)
 }
 
